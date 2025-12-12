@@ -1,107 +1,86 @@
 # Rios AI – Artefact Edition
 
-Rios AI is a full-stack AI assistant developed as part of the technical challenge for the **Junior AI Engineer** position.
+Rios AI is a full‑stack AI assistant developed as part of the technical challenge for the **AI Engineer Junior** position at Artefact.
 
-The system combines a Python backend using FastAPI with a Next.js frontend, integrating a Language Model (LLM) with real tools such as:
+The system integrates:
+- 🧠 **LLM** (gpt-4o-mini)
+- 🐍 **Python Backend (FastAPI)**
+- ⚛️ **Next.js + React Frontend**
+- 🔧 **Real tools for calculations, weather, currency, and crypto queries**
 
-- 🔢 **Smart Calculator**
-- 💱 **Currency Exchange Rates**
-- ₿ **Cryptocurrency Prices**
-- 🌦 **Weather Information**
-- 🤖 **LLM with short-term memory + special greeting for Artefact users**
+The assistant automatically selects the best tool for each request, maintains short‑term memory, and provides a special greeting when it identifies Artefact users.
 
 ---
 
 ## 📁 Project Architecture
 
-```
+```text
 rios-ai/
-│ README_EN.md <-- Main documentation file (English version)
+│  README.md               <-- Main documentation
 │
-├─ ai-assistant/ <-- Python Backend (FastAPI)
-│ ├─ assistant.py       <-- LLM logic + tool routing
-│ ├─ server.py          <-- /chat API
-│ ├─ tools/
-│ │ ├─ calculator.py
-│ │ ├─ currency.py
-│ │ ├─ crypto.py
-│ │ └─ weather.py
-│ └─ requirements.txt
+├─ ai-assistant/           <-- Python Backend
+│  ├─ assistant.py         <-- LLM + tool orchestration logic
+│  ├─ server.py            <-- FastAPI /chat endpoint
+│  ├─ tools/
+│  │   ├─ calculator.py
+│  │   ├─ currency.py
+│  │   ├─ crypto.py
+│  │   └─ weather.py
+│  └─ requirements.txt
 │
-└─ rios-ai-web/ <-- Next.js Frontend
+└─ rios-ai-web/            <-- Next.js Frontend
    ├─ app/
-   │ ├─ page.tsx
-   │ └─ api/chat/route.ts
+   │   ├─ page.tsx
+   │   └─ api/chat/route.ts
    ├─ package.json
    └─ ...
 ```
 
 ---
 
-## 🔄 Application Flow
-
-1. The user types a message on the frontend.
-2. Next.js sends the message to `/api/chat`.
-3. The route forwards the message to the Python backend.
-4. Python decides whether to use:
-   - Calculator  
-   - Weather  
-   - Currency  
-   - Crypto  
-   - Or the LLM  
-5. The response is shown in the chat.
-
----
-
 # ⚙️ Backend Installation (`ai-assistant/`)
 
-### 1. Create virtual environment
+### 1️⃣ Create virtual environment
 
 ```bash
 cd ai-assistant
 python -m venv .venv
-# Activate:
-.\.venv\Scripts ctivate   # Windows
-source .venv/bin/activate  # Linux/Mac
+
+# Windows
+.\.venv\Scripts ctivate
 ```
 
-### 2. Install dependencies
+### 2️⃣ Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Create `.env`
+### 3️⃣ Create `.env`
 
-```
+```env
 OPENAI_API_KEY=your_key_here
 DEBUG=true
 ```
 
-### 4. Run FastAPI server
+### 4️⃣ Run FastAPI server
 
 ```bash
 uvicorn server:app --reload --host 127.0.0.1 --port 8000
-```
-
-Main endpoint:
-
-```
-POST http://127.0.0.1:8000/chat
 ```
 
 ---
 
 # 🎨 Frontend Installation (`rios-ai-web/`)
 
-### 1. Install packages
+### 1️⃣ Install dependencies
 
 ```bash
 cd rios-ai-web
 npm install
 ```
 
-### 2. Start dev server
+### 2️⃣ Run Next.js server
 
 ```bash
 npm run dev
@@ -115,44 +94,68 @@ http://localhost:3000
 
 ---
 
-# ✨ Implemented Features
+# 🔎 Implementation Logic
 
-### 🔢 Smart Calculator  
-Parses math expressions in natural language.  
-Supports `*`, `/`, `x`, `×`, `^`, etc.
+The solution follows a simple, clean, and modular architecture—aligned with the challenge requirement (“solve it in the simplest possible way”), while maintaining professional structure.
 
-### 🌦 Weather Query  
-Real-time temperature + conditions for any city.
+### ✔️ 1. Message Classification
+The assistant analyzes each input and determines the appropriate tool:
 
-### 💱 Currency Exchange  
-Live rates for USD, EUR, GBP.
+- Mathematical expressions → calculator  
+- Weather keywords → weather API  
+- Currency terms → exchange rate lookup  
+- Crypto terms → cryptocurrency price lookup  
+- None of the above → LLM response  
 
-### ₿ Crypto Prices  
-BTC and ETH price retrieval.
+### ✔️ 2. Modular Tool Orchestration  
+Each tool is implemented in a dedicated module inside `tools/`, making the system easily extensible.
 
-### 🧠 LLM Engine  
-- Short-term memory (last 6 exchanges)  
-- Special greeting when user mentions **Artefact**  
-- Model: `gpt-4o-mini`  
+### ✔️ 3. LLM Fallback  
+The `gpt-4o-mini` model answers general questions, with:
 
----
+- Short‑term memory (last 6 messages)  
+- Special greetings for Artefact users  
+- Logging for debugging and traceability  
 
-# 🧪 Example Questions
-
-- “How much is 12 + 35 * 2?”
-- “What's the price of Bitcoin today?”
-- “What’s the dollar exchange rate?”
-- “What's the weather like in Uberlândia?”
-- “Hello, I’m from Artefact.”
+### ✔️ 4. Minimalist Frontend  
+The UI was built with Next.js to provide clarity, simplicity, and an intuitive chat interface for evaluators.
 
 ---
 
-# 🚀 Future Enhancements
+# 🎓 What I Learned
 
-- Streaming responses on frontend  
-- Persistent conversation history  
-- Deployment (Vercel + Railway)  
-- Admin dashboard  
+Throughout the development, I strengthened my skills in:
+
+- Full‑stack architecture for AI applications  
+- Tool‑oriented reasoning and LLM orchestration  
+- Modular and maintainable system design  
+- Integration between Python ↔ Next.js  
+- Error handling and professional logging practices  
+- Message flow between frontend → API → backend  
+
+---
+
+# 🔧 What I Would Improve With More Time
+
+With extra time, I would enhance the project by:
+
+- Implementing **token streaming** in the frontend  
+- Improving intent detection with a small local model  
+- Persisting conversation history in a database  
+- Deploying the full system (Vercel + Railway or Docker Compose)  
+- Adding unit tests for each tool  
+- Building an administrative dashboard for monitoring  
+
+---
+
+# 🧪 Examples
+
+```
+How much is 12 + 35 * 2?
+What is the weather in Uberlândia?
+What is the price of Bitcoin today?
+Hello, I am from Artefact!
+```
 
 ---
 
