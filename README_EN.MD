@@ -1,25 +1,26 @@
 # Rios AI – Artefact Edition
 
-Rios AI is a full-stack AI assistant built as part of the technical challenge for the **AI Engineer Junior** position.
+Rios AI is a full-stack AI assistant developed as part of the technical challenge for the **Junior AI Engineer** position.
 
-It combines a Python backend (FastAPI) with a modern Next.js frontend, integrating a Large Language Model (LLM) with real functional tools:
+The system combines a Python backend using FastAPI with a Next.js frontend, integrating a Language Model (LLM) with real tools such as:
 
-- 🔢 Smart calculator  
-- 💱 Currency exchange rates  
-- ₿ Cryptocurrency prices  
-- 🌦 Weather information  
-- 🤖 LLM with short-term memory and custom greetings for Artefact users  
+- 🔢 **Smart Calculator**
+- 💱 **Currency Exchange Rates**
+- ₿ **Cryptocurrency Prices**
+- 🌦 **Weather Information**
+- 🤖 **LLM with short-term memory + special greeting for Artefact users**
 
 ---
 
 ## 📁 Project Architecture
 
+```
 rios-ai/
-│ README.md
+│ README_EN.md <-- Main documentation file (English version)
 │
-├─ ai-assistant/ # Python backend (FastAPI)
-│ ├─ assistant.py
-│ ├─ server.py
+├─ ai-assistant/ <-- Python Backend (FastAPI)
+│ ├─ assistant.py       <-- LLM logic + tool routing
+│ ├─ server.py          <-- /chat API
 │ ├─ tools/
 │ │ ├─ calculator.py
 │ │ ├─ currency.py
@@ -27,113 +28,136 @@ rios-ai/
 │ │ └─ weather.py
 │ └─ requirements.txt
 │
-└─ rios-ai-web/ # Next.js frontend
-├─ app/
-│ ├─ page.tsx
-│ └─ api/chat/route.ts
-├─ package.json
-
-markdown
-Copiar código
-
-Application flow:
-
-1. User sends a message through the web chat.
-2. Next.js calls `/api/chat`.
-3. The route forwards the message to the Python backend.
-4. The backend chooses between:
-   - Calculator  
-   - Currency  
-   - Crypto  
-   - Weather  
-   - Or the LLM  
-5. The final answer is displayed in the chat UI.
+└─ rios-ai-web/ <-- Next.js Frontend
+   ├─ app/
+   │ ├─ page.tsx
+   │ └─ api/chat/route.ts
+   ├─ package.json
+   └─ ...
+```
 
 ---
 
-## ⚙️ Backend Setup (`ai-assistant/`)
+## 🔄 Application Flow
+
+1. The user types a message on the frontend.
+2. Next.js sends the message to `/api/chat`.
+3. The route forwards the message to the Python backend.
+4. Python decides whether to use:
+   - Calculator  
+   - Weather  
+   - Currency  
+   - Crypto  
+   - Or the LLM  
+5. The response is shown in the chat.
+
+---
+
+# ⚙️ Backend Installation (`ai-assistant/`)
 
 ### 1. Create virtual environment
 
 ```bash
 cd ai-assistant
 python -m venv .venv
-.\.venv\Scripts\activate
-2. Install dependencies
-bash
-Copiar código
+# Activate:
+.\.venv\Scripts ctivate   # Windows
+source .venv/bin/activate  # Linux/Mac
+```
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
-3. Environment variables
-Create .env:
+```
 
-env
-Copiar código
-OPENAI_API_KEY=xxxxxx
+### 3. Create `.env`
+
+```
+OPENAI_API_KEY=your_key_here
 DEBUG=true
-4. Start FastAPI server
-bash
-Copiar código
-uvicorn server:app --reload --host 127.0.0.1 --port 8000
-Endpoint:
-POST http://127.0.0.1:8000/chat
+```
 
-🎨 Frontend Setup (rios-ai-web/)
-1. Install dependencies
-bash
-Copiar código
+### 4. Run FastAPI server
+
+```bash
+uvicorn server:app --reload --host 127.0.0.1 --port 8000
+```
+
+Main endpoint:
+
+```
+POST http://127.0.0.1:8000/chat
+```
+
+---
+
+# 🎨 Frontend Installation (`rios-ai-web/`)
+
+### 1. Install packages
+
+```bash
 cd rios-ai-web
 npm install
-2. Start development server
-bash
-Copiar código
+```
+
+### 2. Start dev server
+
+```bash
 npm run dev
-App runs at:
+```
 
-arduino
-Copiar código
+Access:
+
+```
 http://localhost:3000
-✨ Features
-🔢 Smart Calculator
-Detects expressions inside natural language.
+```
 
-Supports multiplication symbols, exponentiation, and sanitization.
+---
 
-🌦 Weather Fetching
-Returns city temperature and conditions.
+# ✨ Implemented Features
 
-💱 Currency Rates
-USD, EUR, GBP support.
+### 🔢 Smart Calculator  
+Parses math expressions in natural language.  
+Supports `*`, `/`, `x`, `×`, `^`, etc.
 
-₿ Cryptocurrency Prices
-Bitcoin and Ethereum.
+### 🌦 Weather Query  
+Real-time temperature + conditions for any city.
 
-🧠 LLM Integration
-Short-term memory (last 6 messages)
+### 💱 Currency Exchange  
+Live rates for USD, EUR, GBP.
 
-Special greeting when the user mentions “Artefact”
+### ₿ Crypto Prices  
+BTC and ETH price retrieval.
 
-Model: gpt-4o-mini
+### 🧠 LLM Engine  
+- Short-term memory (last 6 exchanges)  
+- Special greeting when user mentions **Artefact**  
+- Model: `gpt-4o-mini`  
 
-🧪 Example Queries
-“How much is 12 + 35 * 2?”
+---
 
-“Bitcoin price today?”
+# 🧪 Example Questions
 
-“USD exchange rate?”
+- “How much is 12 + 35 * 2?”
+- “What's the price of Bitcoin today?”
+- “What’s the dollar exchange rate?”
+- “What's the weather like in Uberlândia?”
+- “Hello, I’m from Artefact.”
 
-“Weather in Uberlândia?”
+---
 
-“Hello, I am from Artefact.”
+# 🚀 Future Enhancements
 
-🚀 Possible Improvements
-Streaming responses
+- Streaming responses on frontend  
+- Persistent conversation history  
+- Deployment (Vercel + Railway)  
+- Admin dashboard  
 
-Conversation history persistence
+---
 
-Production deploy
+# 👤 Author
 
-Admin dashboard
-
-👤 Author
-Pedro Rios
-Developer & Engineer
+**Pedro Rios**  
+Engineer & Developer  
+Building intelligent solutions with AI 🚀
