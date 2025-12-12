@@ -1,144 +1,131 @@
 # Rios AI – Artefact Edition
 
-Rios AI é um assistente de IA full-stack desenvolvido como parte do desafio técnico para a vaga de **AI Engineer Júnior**.
+Rios AI é um assistente de IA full-stack desenvolvido como parte do desafio técnico para a vaga de **AI Engineer Júnior** na Artefact.
 
-O sistema combina um backend em Python com FastAPI e um frontend em Next.js, integrando modelos de linguagem (LLMs) com ferramentas externas reais, como:
+O sistema combina:
+- 🧠 **LLM** (gpt-4o-mini)
+- 🐍 **Backend em Python (FastAPI)**
+- ⚛️ **Frontend com Next.js + React**
+- 🔧 **Ferramentas reais para cálculos, clima, moedas e criptos**
 
-- 🔢 **Calculadora inteligente**
-- 💱 **Cotação de moedas**
-- ₿ **Preço de criptomoedas**
-- 🌦 **Consulta de clima**
-- 🤖 **LLM com memória curta e saudação especial para usuários da Artefact**
+O assistente escolhe automaticamente a melhor ferramenta para cada pergunta, possui memória curta e envia saudações especiais quando identifica usuários da Artefact.
 
 ---
 
 ## 📁 Arquitetura do Projeto
 
-```txt
+```text
 rios-ai/
+│  README.md               <-- Documentação principal
 │
-├── README.md               <-- Arquivo principal de documentação
+├─ ai-assistant/           <-- Backend Python
+│  ├─ assistant.py         <-- LLM + lógica de ferramentas
+│  ├─ server.py            <-- API FastAPI /chat
+│  ├─ tools/
+│  │   ├─ calculator.py
+│  │   ├─ currency.py
+│  │   ├─ crypto.py
+│  │   └─ weather.py
+│  └─ requirements.txt
 │
-├── ai-assistant/           <-- Backend Python (FastAPI)
-│   ├── assistant.py        <-- Lógica: LLM + ferramentas
-│   ├── server.py           <-- API /chat
-│   ├── tools/
-│   │   ├── calculator.py
-│   │   ├── currency.py
-│   │   ├── crypto.py
-│   │   └── weather.py
-│   └── requirements.txt
-│
-└── rios-ai-web/            <-- Frontend Next.js
-    ├── app/
-    │   ├── page.tsx
-    │   └── api/chat/route.ts
-    └── package.json
-Fluxo da aplicação:
-O usuário envia uma mensagem pelo frontend.
+└─ rios-ai-web/            <-- Frontend Next.js
+   ├─ app/
+   │   ├─ page.tsx
+   │   └─ api/chat/route.ts
+   ├─ package.json
+   └─ ...
+```
 
-O Next.js envia a mensagem para /api/chat.
+---
 
-A rota repassa a mensagem para o backend Python.
+## ⚙️ Instalação – Backend (`ai-assistant/`)
 
-O backend decide se usa:
+### 1️⃣ Criar ambiente virtual
 
-Calculadora
-
-Clima
-
-Moedas
-
-Criptos
-
-Ou o LLM
-
-A resposta é exibida no chat.
-
-⚙️ Instalação – Backend (ai-assistant/)
-1. Criar o ambiente virtual
-Bash
-
+```bash
 cd ai-assistant
 python -m venv .venv
 
 # Windows
 .\.venv\Scripts\activate
+```
 
-# Linux/Mac
-source .venv/bin/activate
-2. Instalar dependências
-Bash
+### 2️⃣ Instalar dependências
 
+```bash
 pip install -r requirements.txt
-3. Configurar variáveis de ambiente
-Crie um arquivo .env na raiz da pasta ai-assistant:
+```
 
-Snippet de código
+### 3️⃣ Criar arquivo `.env`
 
+```env
 OPENAI_API_KEY=sua_chave_aqui
 DEBUG=true
-4. Executar API FastAPI
-Bash
+```
 
+### 4️⃣ Rodar o servidor FastAPI
+
+```bash
 uvicorn server:app --reload --host 127.0.0.1 --port 8000
-Endpoint principal: POST http://127.0.0.1:8000/chat
+```
 
-🎨 Instalação – Frontend (rios-ai-web/)
-1. Instalar pacotes
-Bash
+---
 
+## 🎨 Instalação – Frontend (`rios-ai-web/`)
+
+### 1️⃣ Instalar dependências
+
+```bash
 cd rios-ai-web
 npm install
-2. Iniciar o servidor
-Bash
+```
 
+### 2️⃣ Rodar servidor Next.js
+
+```bash
 npm run dev
-Acesse o projeto em: http://localhost:3000
+```
 
-✨ Funcionalidades Implementadas
-🔢 Calculadora Inteligente
-Interpreta expressões dentro de frases.
+Acesse:
 
-Suporta multiplicação, potência, “x/×”, "^", etc.
+```
+http://localhost:3000
+```
 
-Parser seguro.
+---
 
-🌦 Clima
-Consulta temperatura e condições de qualquer cidade.
+## ✨ Funcionalidades
 
-💱 Moedas
-Cotação atualizada de USD, EUR, GBP.
+- 🔢 Calculadora Inteligente  
+- 🌦 Consulta de Clima  
+- 💱 Cotação de Moedas  
+- ₿ Preço de Criptomoedas  
+- 🤖 LLM com Memória Curta  
 
-₿ Criptomoedas
-Preço do Bitcoin e Ethereum.
+---
 
-🧠 LLM
-Memória curta (últimas 6 mensagens).
+## 🧪 Exemplos
 
-Saudações especiais quando o usuário menciona “Artefact”.
+```
+Quanto é 12 + 35 * 2?
+Qual a temperatura de Uberlândia?
+Qual o preço do Bitcoin hoje?
+Sou da Artefact, olá!
+```
 
-Modelo utilizado: gpt-4o-mini.
+---
 
-🧪 Exemplos de Perguntas (Prompts)
-“Quanto é 12 + 35 * 2?”
+## 🚀 Melhorias Futuras
 
-“Qual o preço do Bitcoin hoje?”
+- Streaming no frontend  
+- Persistência de conversas  
+- Deploy  
+- Dashboard administrativo  
 
-“Qual a cotação do dólar?”
+---
 
-“Qual a temperatura de Uberlândia?”
+## 👤 Autor
 
-“Sou da Artefact, olá!”
-
-🚀 Melhorias Futuras
-[ ] Streaming de resposta no frontend
-
-[ ] Histórico persistente (Banco de dados)
-
-[ ] Deploy (Vercel + Railway/Render)
-
-[ ] Painel administrativo
-
-👤 Autor
-Pedro Rios Desenvolvedor e Engenheiro Construindo soluções inteligentes com IA 🚀
+**Pedro Rios**  
+Engenheiro & Desenvolvedor  
+Construindo soluções inteligentes com IA 🚀
