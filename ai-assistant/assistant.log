@@ -1,0 +1,29 @@
+2025-12-11 21:07:56,976 [INFO] Usuário perguntou: Quanto é 12 + 35 * 2?
+2025-12-11 21:08:04,374 [INFO] Usuário perguntou: responda
+2025-12-11 21:08:05,575 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-11 21:14:01,966 [INFO] Usuário perguntou: Quanto é 12 + 35 * 2?
+2025-12-11 21:14:10,991 [INFO] Usuário perguntou: 2+2
+2025-12-11 21:14:24,360 [INFO] Usuário perguntou: 5*5
+2025-12-11 21:14:28,683 [INFO] Usuário perguntou: qual o valor do dolar
+2025-12-11 21:14:32,125 [INFO] Usuário perguntou: e o euro?
+2025-12-11 21:14:37,145 [INFO] Usuário perguntou: libra
+2025-12-11 21:14:45,094 [INFO] Usuário perguntou: qual a temperatura de uberlandia
+2025-12-11 21:14:51,598 [INFO] Usuário perguntou: e de uberaba
+2025-12-11 21:14:53,349 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-11 21:14:59,200 [INFO] Usuário perguntou: temperatura uberaba
+2025-12-11 21:15:07,031 [INFO] Usuário perguntou: chance de chuva uberlandia
+2025-12-11 21:15:08,858 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-11 21:15:20,648 [INFO] Usuário perguntou: quem é albert einstein
+2025-12-11 21:15:25,822 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-11 21:16:12,963 [INFO] Usuário perguntou: Quanto é 12 + 35 * 2?
+2025-12-11 21:17:33,963 [INFO] Usuário perguntou: qual o preço do bitcoin
+2025-12-11 21:17:50,619 [INFO] Usuário perguntou: Quanto é 12 + 35 * 2?
+2025-12-11 21:17:58,228 [INFO] Usuário perguntou: 12*569
+2025-12-11 21:18:37,041 [INFO] Usuário perguntou: e 2^2
+2025-12-11 21:18:38,176 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-11 21:19:57,820 [INFO] Usuário perguntou: 12 + 35 * 2
+2025-12-11 21:22:06,816 [INFO] Usuário perguntou: Quanto é 12 + 35 * 2?
+2025-12-11 21:24:50,557 [INFO] Usuário perguntou: Quanto é 12 + 35 * 2?
+2025-12-11 21:25:00,189 [INFO] Usuário perguntou: quanto é 2+2
+2025-12-11 21:25:04,797 [INFO] Usuário perguntou: 2+2
+2025-12-11 21:25:52,341 [INFO] Usuário perguntou: Quanto é 12 + 35 * 2?
