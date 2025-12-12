@@ -1,6 +1,6 @@
 # Rios AI – Artefact Edition
 
-Rios AI é um assistente de IA full-stack desenvolvido como parte do desafio técnico para a vaga de **AI Engineer Júnior**.  
+Rios AI é um assistente de IA full-stack desenvolvido como parte do desafio técnico para a vaga de **AI Engineer Júnior**.
 
 O sistema combina um backend em Python com FastAPI e um frontend em Next.js, integrando modelos de linguagem (LLMs) com ferramentas externas reais, como:
 
@@ -14,82 +14,88 @@ O sistema combina um backend em Python com FastAPI e um frontend em Next.js, int
 
 ## 📁 Arquitetura do Projeto
 
+```txt
 rios-ai/
-│ README.md <-- Arquivo principal de documentação
 │
-├─ ai-assistant/ <-- Backend Python (FastAPI)
-│ ├─ assistant.py <-- Lógica: LLM + ferramentas
-│ ├─ server.py <-- API /chat
-│ ├─ tools/
-│ │ ├─ calculator.py
-│ │ ├─ currency.py
-│ │ ├─ crypto.py
-│ │ └─ weather.py
-│ └─ requirements.txt
+├── README.md               <-- Arquivo principal de documentação
 │
-└─ rios-ai-web/ <-- Frontend Next.js
-├─ app/
-│ ├─ page.tsx
-│ └─ api/chat/route.ts
-├─ package.json
-└─ ...
-
-yaml
-Copiar código
-
+├── ai-assistant/           <-- Backend Python (FastAPI)
+│   ├── assistant.py        <-- Lógica: LLM + ferramentas
+│   ├── server.py           <-- API /chat
+│   ├── tools/
+│   │   ├── calculator.py
+│   │   ├── currency.py
+│   │   ├── crypto.py
+│   │   └── weather.py
+│   └── requirements.txt
+│
+└── rios-ai-web/            <-- Frontend Next.js
+    ├── app/
+    │   ├── page.tsx
+    │   └── api/chat/route.ts
+    └── package.json
 Fluxo da aplicação:
+O usuário envia uma mensagem pelo frontend.
 
-1. O usuário envia uma mensagem pelo frontend.
-2. O Next.js envia a mensagem para `/api/chat`.
-3. A rota repassa a mensagem para o backend Python.
-4. O backend decide se usa:
-   - Calculadora  
-   - Clima  
-   - Moedas  
-   - Criptos  
-   - Ou o LLM
-5. A resposta é exibida no chat.
+O Next.js envia a mensagem para /api/chat.
 
----
+A rota repassa a mensagem para o backend Python.
 
-## ⚙️ Instalação – Backend (`ai-assistant/`)
+O backend decide se usa:
 
-### 1. Criar o ambiente virtual
-```bash
+Calculadora
+
+Clima
+
+Moedas
+
+Criptos
+
+Ou o LLM
+
+A resposta é exibida no chat.
+
+⚙️ Instalação – Backend (ai-assistant/)
+1. Criar o ambiente virtual
+Bash
+
 cd ai-assistant
 python -m venv .venv
-.\.venv\Scripts\activate   # Windows
+
+# Windows
+.\.venv\Scripts\activate
+
+# Linux/Mac
+source .venv/bin/activate
 2. Instalar dependências
-bash
-Copiar código
+Bash
+
 pip install -r requirements.txt
-3. Criar arquivo .env
-env
-Copiar código
-OPENAI_API_KEY=xxxxxx
+3. Configurar variáveis de ambiente
+Crie um arquivo .env na raiz da pasta ai-assistant:
+
+Snippet de código
+
+OPENAI_API_KEY=sua_chave_aqui
 DEBUG=true
 4. Executar API FastAPI
-bash
-Copiar código
+Bash
+
 uvicorn server:app --reload --host 127.0.0.1 --port 8000
-Endpoint principal:
-POST http://127.0.0.1:8000/chat
+Endpoint principal: POST http://127.0.0.1:8000/chat
 
 🎨 Instalação – Frontend (rios-ai-web/)
 1. Instalar pacotes
-bash
-Copiar código
+Bash
+
 cd rios-ai-web
 npm install
 2. Iniciar o servidor
-bash
-Copiar código
-npm run dev
-Acesse em:
+Bash
 
-arduino
-Copiar código
-http://localhost:3000
+npm run dev
+Acesse o projeto em: http://localhost:3000
+
 ✨ Funcionalidades Implementadas
 🔢 Calculadora Inteligente
 Interpreta expressões dentro de frases.
@@ -108,13 +114,13 @@ Cotação atualizada de USD, EUR, GBP.
 Preço do Bitcoin e Ethereum.
 
 🧠 LLM
-Memória curta (últimas 6 mensagens)
+Memória curta (últimas 6 mensagens).
 
-Saudações especiais quando o usuário menciona “Artefact”
+Saudações especiais quando o usuário menciona “Artefact”.
 
-Modelo utilizado: gpt-4o-mini
+Modelo utilizado: gpt-4o-mini.
 
-🧪 Exemplos de Perguntas
+🧪 Exemplos de Perguntas (Prompts)
 “Quanto é 12 + 35 * 2?”
 
 “Qual o preço do Bitcoin hoje?”
@@ -126,15 +132,13 @@ Modelo utilizado: gpt-4o-mini
 “Sou da Artefact, olá!”
 
 🚀 Melhorias Futuras
-Streaming no frontend
+[ ] Streaming de resposta no frontend
 
-Histórico persistente
+[ ] Histórico persistente (Banco de dados)
 
-Deploy (Vercel + Railway)
+[ ] Deploy (Vercel + Railway/Render)
 
-Painel administrativo
+[ ] Painel administrativo
 
 👤 Autor
-Pedro Rios
-Desenvolvedor e Engenheiro
-Construindo soluções inteligentes com IA 🚀
+Pedro Rios Desenvolvedor e Engenheiro Construindo soluções inteligentes com IA 🚀
